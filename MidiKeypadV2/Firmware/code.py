@@ -1,3 +1,4 @@
+
 import keypad
 import touchio
 from microcontroller import pin
@@ -78,11 +79,18 @@ encoder.pins = (
 )
 
 encoder.map = [
+    # Layer 0: Normal turning
     (
-        (KC.VOLD, KC.VOLU, MEDIA_CTRL),  # Encoder 1: Volume down / up / Media TapDance
-        (KC.BRID, KC.BRIU, KC.NO),       # Encoder 2: Brightness down / up / Shared button
-        (KC.LEFT, KC.RIGHT, KC.NO),      # Encoder 3: Left / Right arrows
-    )
+        (KC.VOLD, KC.VOLU, MEDIA_CTRL),   # Encoder 1: Volume + Media
+        (KC.BRID, KC.BRIU, KC.MO(1)),     # Encoder 2: Brightness + Hold for Layer 1
+        (KC.LEFT, KC.RIGHT, KC.NO),       # Encoder 3: Left / Right arrows
+    ),
+    # Layer 1: While Encoder 2 (or 3) button is held down!
+    (
+        (KC.TRNS, KC.TRNS, KC.TRNS),      # Encoder 1: Keep same as Layer 0
+        (KC.TRNS, KC.TRNS, KC.TRNS),      # Encoder 2: Keep same (or remap this too!)
+        (KC.DOWN, KC.UP, KC.NO),          # Encoder 3: Up / Down arrows (or Zoom: KC.LCTL(KC.MINUS), KC.LCTL(KC.EQUAL))
+    ),
 ]
 
 keyboard.extensions = [media_keys]
