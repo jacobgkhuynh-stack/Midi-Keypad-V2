@@ -1,4 +1,4 @@
-
+#I just modifed the code from the example. Please dont ban me? idk may you will :(
 import keypad
 import touchio
 from microcontroller import pin
